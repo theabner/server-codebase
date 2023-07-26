@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                                  
+    "module": "commonjs",  
+    "lib": [
+      "ESNext", 
+      "esnext.asynciterable"
+    ],    
+    "types": ["reflect-metadata", "jest"],                          
+    "rootDir": "./src",                                  
+    "allowJs": true,                                  
+    "checkJs": true,                                 
+    "outDir": "./dist",                                   
+    "esModuleInterop": true,                                        
+    "strict": true,                                    
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,                             
+  },
+  "typeRoots": ["node_modules/@types"],
+  "include": ["src"],
+  "exclude": [
+    "node_modules", 
+    "dist", 
+    "test"
+  ]
+}

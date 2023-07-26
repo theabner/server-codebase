@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserModule = void 0;
+const inversify_1 = require("inversify");
+const user_service_1 = require("./user.service");
+const user_repository_1 = require("./user.repository");
+const user_controller_1 = require("./user.controller");
+const client_1 = require("@prisma/client");
+const UserModule = new inversify_1.Container();
+exports.UserModule = UserModule;
+UserModule.bind('PrismaClient').toConstantValue(new client_1.PrismaClient());
+UserModule.bind('IUserRepository').to(user_repository_1.UserRepository);
+UserModule.bind('IUserService').to(user_service_1.UserService);
+UserModule.bind(user_controller_1.UserController).toSelf();

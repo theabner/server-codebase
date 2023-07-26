@@ -1,0 +1,7 @@
+{
+  "verbose": true,
+  "events": {
+    "restart": "pnpm lint"
+  },
+  "ignore": ["test/*"]
+}

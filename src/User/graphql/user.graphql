@@ -1,0 +1,32 @@
+type User {
+  id: String
+  name: String
+  email: String
+  age: Int
+  isActive: Boolean
+}
+
+input UserInput {
+  name: String
+  email: String
+  age: Int
+}
+
+input UpdateUserInput {
+  id: String
+  name: String
+  email: String
+  age: Int
+  isActive: Boolean
+}
+
+type Mutation {
+  createUser(input: UserInput!): User!
+  updateUser(input: UpdateUserInput!): User!
+  deleteUser(userId: String!): User!
+}
+
+type Query {
+  findUser(userId: String!): User!
+  findUsers: [User]!
+}
