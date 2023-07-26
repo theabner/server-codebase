@@ -2,12 +2,6 @@ import  { USER_MOCK } from './mock/user.mock'
 import { IUserService } from '../../src/User/interface/IUser.service'
 import { IUserRepository } from '../../src/User/interface/IUser.repository'
 import { UserService } from '../../src/User/user.service'
-import { 
-  describe, 
-  expect, 
-  it, 
-  beforeEach, 
-} from '@jest/globals'
 
 let service: IUserService
 const repositoryMock: IUserRepository = {

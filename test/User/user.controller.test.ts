@@ -1,12 +1,7 @@
 import  { USER_MOCK } from './mock/user.mock'
 import { IUserService } from '../../src/User/interface/IUser.service'
 import { UserController } from '../../src/User/user.controller'
-import { 
-  describe, 
-  expect, 
-  it, 
-  beforeEach, 
-} from '@jest/globals'
+
 
 let controller: UserController
 const serviceMock: IUserService = {

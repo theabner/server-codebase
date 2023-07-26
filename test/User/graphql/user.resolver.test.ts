@@ -72,7 +72,7 @@ describe('UserResolver', () => {
 
   it('should return a user', async () => {
     const resolver = UserResolver(controller)
-    const user = await resolver.Query.findUser(null, { userId: '1' },)
+    const user = await resolver.Query.findUser(null, { userId: '1' })
 
     expect(user).toEqual(USER_MOCK[3])
     expect(user).toHaveProperty('id')

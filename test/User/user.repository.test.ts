@@ -2,12 +2,6 @@ import { PrismaClient } from '@prisma/client'
 import { IUserRepository } from '../../src/User/interface/IUser.repository'
 import { UserRepository } from '../../src/User/user.repository'
 import { USER_MOCK } from './mock/user.mock'
-import {
-  describe,
-  expect,
-  it,
-  beforeEach,
-} from '@jest/globals'
 import { CreateUserDto } from '../../src/User/interface/User.dto'
 
 let repository: IUserRepository
