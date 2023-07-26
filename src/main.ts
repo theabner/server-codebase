@@ -1,6 +1,9 @@
 import 'reflect-metadata'
 import { server } from './server'
+import 'dotenv/config'
 
-server.listen(3000, () => {
-  console.log('Listening on port 3000')
+const port = process.env.SERVER_PORT
+
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`)
 })
