@@ -14,7 +14,7 @@
     "test": "tsc && jest test --colors --passWithNoTests",
     "test:debug": "pnpm test --detectOpenHandles --forceExit",
     "test:watch": "tsc && jest test --watch",
-    "setup": "pnpm install && pnpm prepare && pnpx prisma generate",
+    "organization": "pnpm install && pnpm prepare && pnpx prisma generate",
     "reset": "rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpx prisma generate",
     "prepare": "husky install"
   },
