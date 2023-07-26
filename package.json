@@ -15,8 +15,9 @@
     "test:debug": "pnpm test --detectOpenHandles --forceExit",
     "test:watch": "tsc && jest test --watch",
     "organization": "pnpm install && pnpm prepare && pnpx prisma generate",
-    "reset": "rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpx prisma generate",
-    "prepare": "husky install"
+    "reset": "rimraf node_modules pnpm-lock.yaml && pnpm organization",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@graphql-tools/load-files": "^7.0.0",
@@ -63,15 +64,6 @@
     "*.ts": [
       "pnpm lint",
       "pnpm test"
-    ],
-    "*.json": [
-      "pnpm lint",
-      "pnpm test"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
