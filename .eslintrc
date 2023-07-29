@@ -23,6 +23,7 @@
     "jest": true
   },
   "rules": {
+    "camelcase": "error",
     "quotes": ["warn", "single"],
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "comma-dangle": ["error", "always-multiline"],
