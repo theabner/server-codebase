@@ -86,8 +86,7 @@ describe('UserResolver', () => {
 
   it('should return a array of users', async () => {
     const resolver = UserResolver(controller)
-    const users = await resolver.Query.findUsers()
-    console.log(users)
+    const users = await resolver.Query.findUsers(null, {})
     expect(users).toBeDefined()
 
     users.forEach(user => {

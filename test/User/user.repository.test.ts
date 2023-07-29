@@ -107,4 +107,61 @@ describe('UserRepository', () => {
     expect(prisma.user.findMany).toBeCalledTimes(1)
     expect(users).toHaveLength(5)
   })
+
+  it('should find  3 users', async () => {
+    jest.spyOn(prisma.user, 'findMany').mockResolvedValue([
+      {
+        id: '1',
+        name: 'name1',
+        email: 'email1',
+        age: 1,
+        isActive: true,
+      },
+      {
+        id: '2',
+        name: 'name2',
+        email: 'email2',
+        age: 2,
+        isActive: false,
+      },
+      {
+        id: '3',
+        name: 'name3',
+        email: 'email3',
+        age: 3,
+        isActive: false,
+      },
+    ])
+    
+    const users = await repository.find(3)
+
+    console.log(users)
+    expect(prisma.user.findMany).toBeCalledTimes(1)
+    expect(users).toHaveLength(3)
+  })
+
+  it('should find  2 users with cursor parameter', async () => {
+    jest.spyOn(prisma.user, 'findMany').mockResolvedValue([
+      {
+        id: '2',
+        name: 'name2',
+        email: 'email2',
+        age: 2,
+        isActive: false,
+      },
+      {
+        id: '3',
+        name: 'name3',
+        email: 'email3',
+        age: 3,
+        isActive: false,
+      },
+    ])
+    
+    const users = await repository.find(2, '2')
+
+    console.log(users)
+    expect(prisma.user.findMany).toBeCalledTimes(1)
+    expect(users).toHaveLength(2)
+  })
 })

@@ -6,7 +6,7 @@ interface IUserService {
   update(createUserDto: CreateUserDto): Promise<User>;
   delete(user: string): Promise<User>;
   findById(id: string): Promise<User>;
-  find(): Promise<User[]>;
+  find(take?: number, lasUser?: string): Promise<User[]>;
 }
 
 export { IUserService }

@@ -6,8 +6,8 @@ const UserResolver = (controller: UserController) => {
       findUser: (_: any, args: any) => {
         return controller.findById(args.userId)
       },
-      findUsers: () => {
-        return controller.find()
+      findUsers: (_: any, args: any) => {
+        return controller.find(args.take, args.lastUser)
       },
     },
     Mutation: {

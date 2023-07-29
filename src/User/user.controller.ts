@@ -24,8 +24,8 @@ class UserController {
     return await this.userService.findById(userId)
   }
 
-  public async find(): Promise<User[]> {
-    return await this.userService.find()
+  public async find(take?: number, lastUser?: string): Promise<User[]> {
+    return await this.userService.find(take, lastUser)
   }
 }
 

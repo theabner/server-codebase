@@ -25,8 +25,8 @@ class UserService implements IUserService {
     return await this.userRepository.findById(userId)
   }
 
-  public async find(): Promise<User[]> {
-    return await this.userRepository.find()
+  public async find(take?: number, lastUser?: string): Promise<User[]> {
+    return await this.userRepository.find(take, lastUser)
   }
 }
 

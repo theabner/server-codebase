@@ -28,5 +28,5 @@ type Mutation {
 
 type Query {
   findUser(userId: String!): User!
-  findUsers: [User]!
+  findUsers(take: Int, lastUser: String): [User]!
 }
