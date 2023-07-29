@@ -1,10 +1,10 @@
 import request  from 'supertest'
-import { server } from '../src/server'
+import { Server } from '../src/server'
 
 describe('server.ts', () => {
   it('should return a express server', async () => {
     
-    const response = await request(server).get('/health')
+    const response = await request(Server).get('/health')
 
     expect(response.status).toBe(200)
     expect(response.body).toBeDefined()

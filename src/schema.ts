@@ -4,9 +4,9 @@ import { loadFilesSync } from '@graphql-tools/load-files'
 import { UserResolver } from './User/graphql/user.resolver'
 import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge'
 import { UserController } from './User/user.controller'
-import { aplicationModule } from './module'
+import { AppModule } from './module'
 
-const userController = aplicationModule.resolve<UserController>(UserController)
+const userController = AppModule.resolve<UserController>(UserController)
 
 const typesArray = loadFilesSync(join(resolve(),'src'), { 
   extensions: ['graphql'], 
@@ -18,9 +18,9 @@ const resolvers = mergeResolvers([
   UserResolver(userController),
 ])
 
-const schema = makeExecutableSchema({ 
+const GraphqlSchema = makeExecutableSchema({ 
   typeDefs,
   resolvers,
 })
 
-export { schema }
+export { GraphqlSchema }

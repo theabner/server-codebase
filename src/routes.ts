@@ -1,14 +1,14 @@
 import { Router } from 'express'
 import { DateTime } from 'luxon'
 
-const routes = Router()
+const AppRoutes = Router()
 
-routes.get('/health', (req, res) => {
-  // let controller = container.get<UserController>(UserController);
+AppRoutes.get('/health', (req, res) => {
+  // let controller = AppRoutes.get<UserController>(UserController);
   res.status(200).json({
     uptime: process.uptime(),
     timestamp: DateTime.now().toISO(),
   })
 })
 
-export { routes }
+export { AppRoutes }

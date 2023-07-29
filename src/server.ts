@@ -5,31 +5,30 @@ import morgan from 'morgan'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 import { createHandler } from 'graphql-http/lib/use/express'
-import { routes } from './routes'
-import { schema } from './schema'
+import { AppRoutes } from './routes'
+import { GraphqlSchema } from './schema'
 
+const Server = express()
 
-const server = express()
-
-server.use(cors({
+Server.use(cors({
   origin: `http://localhost:${process.env.SERVER_PORT}`,
 }))
 
-server.use(rateLimit({
+Server.use(rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
   standardHeaders: true,
   legacyHeaders: false,
 }))
 
-server.use(helmet())
-server.use(morgan('dev'))
-server.use(express.json())
+Server.use(helmet())
+Server.use(morgan('dev'))
+Server.use(express.json())
 
-server.use(routes)
+Server.use(AppRoutes)
 
-server.use('/graphql', createHandler({
-  schema: schema, 
+Server.use('/graphql', createHandler({
+  schema: GraphqlSchema, 
 }))
 
-export { server }
+export { Server }
