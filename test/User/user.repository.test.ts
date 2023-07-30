@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { IUserRepository } from '../../src/User/interface/IUser.repository'
 import { UserRepository } from '../../src/User/user.repository'
 import { USER_MOCK } from './mock/user.mock'
-import { CreateUserDto } from '../../src/User/interface/User.dto'
+import { UserDto } from '../../src/User/interface/User.dto'
 
 let repository: IUserRepository
 const prisma: PrismaClient = new PrismaClient()
@@ -38,14 +38,14 @@ describe('UserRepository', () => {
   })
 
   it('should return an error if user.id is invalid', async () => {
-    const createUserDto: CreateUserDto = {
+    const UserDto: UserDto = {
       name: 'name1',
       email: 'email1',
       age: 1,
       isActive: true,
     }
 
-    repository.create(createUserDto).catch(error => {
+    repository.create(UserDto).catch(error => {
       expect(error).toBeInstanceOf(Error)
       expect(error.message).toBe('User should have an id')
     })
@@ -135,7 +135,6 @@ describe('UserRepository', () => {
     
     const users = await repository.find(3)
 
-    console.log(users)
     expect(prisma.user.findMany).toBeCalledTimes(1)
     expect(users).toHaveLength(3)
   })
@@ -160,7 +159,6 @@ describe('UserRepository', () => {
     
     const users = await repository.find(2, '2')
 
-    console.log(users)
     expect(prisma.user.findMany).toBeCalledTimes(1)
     expect(users).toHaveLength(2)
   })

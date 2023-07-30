@@ -1,4 +1,4 @@
-interface CreateUserDto { 
+interface UserDto { 
   id?: string;
   name: string;
   email: string;
@@ -6,4 +6,4 @@ interface CreateUserDto {
   isActive: boolean;
 }
 
-export { CreateUserDto }
+export { UserDto }

@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { IUserRepository } from './interface/IUser.repository'
-import { CreateUserDto } from './interface/User.dto'
+import { UserDto } from './interface/User.dto'
 import { User } from './user.entitiy'
 import { inject, injectable } from 'inversify'
 
@@ -9,31 +9,31 @@ class UserRepository implements IUserRepository {
 
   constructor(@inject('PrismaClient') private readonly prisma: PrismaClient){}
 
-  public async create(createUserDto: CreateUserDto): Promise<User> {
+  public async create(UserDto: UserDto): Promise<User> {
 
-    if(!createUserDto.id)
+    if(!UserDto.id)
       throw new Error('User should have an id')
 
     return await this.prisma.user.create({
       data: {
-        id: createUserDto.id,
-        name: createUserDto.name,
-        email: createUserDto.email,
-        age: createUserDto.age,
+        id: UserDto.id,
+        name: UserDto.name,
+        email: UserDto.email,
+        age: UserDto.age,
       },
     })
   }
 
-  public async  update(createUserDto: CreateUserDto): Promise<User> {
+  public async  update(UserDto: UserDto): Promise<User> {
     return await this.prisma.user.update({
       where: {
-        id: createUserDto.id,
+        id: UserDto.id,
       },
       data: {
-        name: createUserDto.name,
-        email: createUserDto.email,
-        age: createUserDto.age,
-        isActive: createUserDto.isActive,
+        name: UserDto.name,
+        email: UserDto.email,
+        age: UserDto.age,
+        isActive: UserDto.isActive,
       },
     })
   }

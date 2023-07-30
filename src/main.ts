@@ -1,6 +1,6 @@
 import 'reflect-metadata'
-import { Server } from './server'
 import 'dotenv/config'
+import { Server } from './server'
 
 const port = process.env.SERVER_PORT
 

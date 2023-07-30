@@ -20,7 +20,7 @@ describe('UserController', () => {
   it('should create a user', async () => {
     const user = await controller.create({
       name: 'name1',
-      email: 'email1',
+      email: 'email1@teste.com.br',
       age: 1,
       isActive: true,
     })
@@ -40,7 +40,7 @@ describe('UserController', () => {
     const user = await controller.update({
       id: '1',
       name: 'name1',
-      email: 'email1',
+      email: 'email1@teste.com.br',
       age: 1,
       isActive: true,
     })
@@ -53,6 +53,35 @@ describe('UserController', () => {
     expect(user).toHaveProperty('isActive')
 
     expect(serviceMock.update).toBeCalledTimes(1)
+  })
+
+  it('should return an error if email is invalid', async () => {
+    const newUser = {
+      name: 'n',
+      email: 'email1@teste.com.br',
+      age: 1,
+      isActive: true,
+    }
+
+    controller.create(newUser).catch(error => {
+      console.log(error.message)
+      expect(error).toBeInstanceOf(Error)
+      expect(error.message).toBe('"name" length must be at least 5 characters long')
+    })
+  })
+
+  it('should return an error if name is invalid', async () => {
+    const newUser = {
+      name: 'name1',
+      email: 'email1teste.com.br',
+      age: 1,
+      isActive: true,
+    }
+
+    controller.create(newUser).catch(error => {
+      expect(error).toBeInstanceOf(Error)
+      expect(error.message).toBe('\"email\" must be a valid email')
+    })
   })
 
   it('should delete a user', async () => {
