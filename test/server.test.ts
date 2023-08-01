@@ -1,7 +1,7 @@
 import request  from 'supertest'
 import { Server } from '../src/server'
 
-describe('server.ts', () => {
+describe('src/server.ts', () => {
   it('should return a express server', async () => {
     
     const response = await request(Server).get('/health')

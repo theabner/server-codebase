@@ -14,14 +14,14 @@ class UserService implements IUserService {
     return await this.userRepository.create(UserDto)
   }
 
-  public async  update(UserDto: UserDto): Promise<User> {
+  public async update(UserDto: UserDto): Promise<User> {
     return await this.userRepository.update(UserDto)
   }
 
-  public async  delete(userId: string): Promise<User> {
+  public async delete(userId: string): Promise<User> {
     return await this.userRepository.delete(userId)
   }
-  public async  findById(userId: string): Promise<User> {
+  public async findById(userId: string): Promise<User> {
     return await this.userRepository.findById(userId)
   }
 

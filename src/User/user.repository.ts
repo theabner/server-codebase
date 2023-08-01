@@ -24,7 +24,7 @@ class UserRepository implements IUserRepository {
     })
   }
 
-  public async  update(UserDto: UserDto): Promise<User> {
+  public async update(UserDto: UserDto): Promise<User> {
     return await this.prisma.user.update({
       where: {
         id: UserDto.id,
@@ -38,7 +38,7 @@ class UserRepository implements IUserRepository {
     })
   }
   
-  public async  delete(userID: string): Promise<User> {
+  public async delete(userID: string): Promise<User> {
     return await this.prisma.user.update({
       where: {
         id: userID,
