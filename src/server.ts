@@ -4,10 +4,12 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
-import { createHandler } from 'graphql-http/lib/use/express'
 import { AppRoutes } from './routes'
 import { GraphqlSchema } from './schema'
+import { createHandler } from 'graphql-http/lib/use/express'
+import { NoSchemaIntrospectionCustomRule } from 'graphql'
 
+const isProd = process.env.NODE_ENV === 'PROD'
 const Server = express()
 
 Server.use(cors({
@@ -28,7 +30,8 @@ Server.use(express.json())
 Server.use(AppRoutes)
 
 Server.use('/graphql', createHandler({
-  schema: GraphqlSchema, 
+  schema: GraphqlSchema,
+  validationRules: isProd ? [NoSchemaIntrospectionCustomRule] : [],
 }))
 
 export { Server }
