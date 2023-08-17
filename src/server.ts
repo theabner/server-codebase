@@ -1,11 +1,11 @@
 import 'dotenv/config'
 import Fastify from 'fastify'
 import mercurius from 'mercurius'
-import { fastifyCors } from '@fastify/cors'
 import helmet from '@fastify/helmet'
 import rateLimit from '@fastify/rate-limit'
 import { AppRoutes } from './routes'
 import { GraphqlSchema } from './schema'
+import { fastifyCors } from '@fastify/cors'
 import { NoSchemaIntrospectionCustomRule } from 'graphql'
 
 const isProd = process.env.NODE_ENV === 'PROD'
