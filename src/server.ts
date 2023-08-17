@@ -1,37 +1,56 @@
 import 'dotenv/config'
-import express from 'express'
-import helmet from 'helmet'
-import morgan from 'morgan'
-import cors from 'cors'
-import rateLimit from 'express-rate-limit'
+import Fastify from 'fastify'
+import mercurius from 'mercurius'
+import { fastifyCors } from '@fastify/cors'
+import helmet from '@fastify/helmet'
+import rateLimit from '@fastify/rate-limit'
 import { AppRoutes } from './routes'
 import { GraphqlSchema } from './schema'
-import { createHandler } from 'graphql-http/lib/use/express'
 import { NoSchemaIntrospectionCustomRule } from 'graphql'
 
 const isProd = process.env.NODE_ENV === 'PROD'
-const Server = express()
+const port = process.env.SERVER_PORT
 
-Server.use(cors({
-  origin: `http://localhost:${process.env.SERVER_PORT}`,
-}))
+const Server = Fastify({
+  logger: true,
+  requestTimeout: 30000,
+})
 
-Server.use(rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-  standardHeaders: true,
-  legacyHeaders: false,
-}))
+Server.register(AppRoutes)
 
-Server.use(helmet())
-Server.use(morgan('dev'))
-Server.use(express.json())
-
-Server.use(AppRoutes)
-
-Server.use('/graphql', createHandler({
+Server.register(mercurius, {
   schema: GraphqlSchema,
   validationRules: isProd ? [NoSchemaIntrospectionCustomRule] : [],
-}))
+  graphiql: isProd ? false : true,
+})
+
+if (isProd) {
+  Server.register(helmet, { global: true })
+
+  Server.register(fastifyCors, {
+    origin: (origin, callback) => {
+      const allowedOrigins = [`http://localhost:${port}`, 'https:/my-domain.com']
+
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Origin not allowed'), false)
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  })
+
+  Server.register(rateLimit, {
+    max: 1000,
+    timeWindow: 15 * 60 * 1000,
+    errorResponseBuilder: () => {
+      return {
+        statusCode: 429,
+        error: 'Too Many Requests',
+        message: 'Rate limit exceeded',
+      }
+    },
+  })
+}
 
 export { Server }

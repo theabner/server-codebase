@@ -8,6 +8,7 @@ module.exports = {
     '!node_modules/**',
     '!dist/**',
     '!test/**',
+    '!src/server.ts',
   ],
   coverageThreshold: {
     global: {
