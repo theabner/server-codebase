@@ -15,7 +15,10 @@
   ],
   "settings": {
     "typescript": true,
-    "node": true
+    "node": true,
+    "import/resolver": {
+      "typescript": {}
+    }
   },
   "root": true,
   "env": {
