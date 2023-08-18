@@ -1,9 +1,9 @@
 import { USER_MOCK } from '../mock/user.mock'
 import { UserResolver } from '../../../src/User/graphql/user.resolver'
 import { UserController } from '../../../src/User/user.controller'
-import { AppModule } from '../../../src/module'
+import { AppContainer } from '../../../src/container'
 
-const controller: UserController = AppModule.get<UserController>(UserController)
+const controller: UserController = AppContainer.get<UserController>(UserController)
 
 beforeEach(() => {
   ;(controller.create = jest.fn().mockResolvedValue(USER_MOCK[0])),

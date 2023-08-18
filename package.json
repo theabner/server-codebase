@@ -14,10 +14,7 @@
     "test": "tsc && jest test --colors --passWithNoTests",
     "test:debug": "pnpm test --detectOpenHandles --forceExit",
     "test:watch": "tsc && jest test --watch",
-    "prisma:prod": "pnpm prisma generate --schema prisma/schema.dev.prisma",
-    "prisma:dev": "pnpm prisma generate --schema prisma/schema.prod.prisma",
-    "organization": "pnpm install && pnpm prepare && pnpx prisma generate",
-    "reset": "rimraf node_modules pnpm-lock.yaml && pnpm organization",
+    "setup:project": "rimraf node_modules pnpm-lock.yaml dist coverage && pnpm install && pnpm prepare && pnpm prisma generate",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
@@ -45,7 +42,6 @@
   "devDependencies": {
     "@types/jest": "^29.5.3",
     "@types/luxon": "^3.3.1",
-    "@types/supertest": "^2.0.12",
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
@@ -57,7 +53,6 @@
     "lint-staged": "^14.0.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.2",
-    "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"

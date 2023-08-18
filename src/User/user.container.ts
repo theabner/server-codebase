@@ -5,10 +5,10 @@ import { IUserRepository } from './interface/IUser.repository'
 import { UserRepository } from './user.repository'
 import { UserController } from './user.controller'
 
-const UserModule = new ContainerModule((bind) => {
+const UserContainer = new ContainerModule((bind) => {
   bind<IUserRepository>('UserRepository').to(UserRepository)
   bind<IUserService>('UserService').to(UserService)
   bind<UserController>(UserController).toSelf()
 })
 
-export { UserModule }
+export { UserContainer }
