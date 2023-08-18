@@ -1,43 +1,47 @@
-# server-codebase
+# Server Codebase
 
 ## Motivation
-This codebase was created to be used in the development of any nodeJS server in an easy way without having to configure the frameworks every time.
+Welcome to the Server Codebase! This project streamlines the setup and development of Node.js servers, eliminating the need to repeatedly configure frameworks. We've integrated several key frameworks to ensure a smooth development experience:
 
-#### The main frameworks used are:
-- Fastfy
-- Graphql
+- Fastify
+- GraphQL
 - PrismaJS
 - InversifyJS
 - pnpm (package manager)
 - Jest (test runner)
 
-  
-## Instalation
-- First you need to configure the environment variables by creating an .env file following the example of the .env.evample file in this repository.
-- Then you must run the `pnpm install` command to install the project's dependencies.
-- Then you can run the `pnpm setup:project` script and the project will automatically delete unused files, configure prismaJS and husky.
+## Installation
+Follow these steps to set up the project:
+
+1. Configure environment variables by creating an `.env` file. Refer to the provided `.env.example` in this repository.
+2. Install project dependencies by running the command `pnpm install`.
+3. Execute the `pnpm setup:project` script to automatically perform tasks like removing unused files, configuring PrismaJS, and setting up Husky.
 
 ## Development
 
-#### Database:
-This project was created using the prismaJS ORM, so we must pay attention to the framework's migrations and configuration commands. For more information visit [PrismaJS](https://https://www.prisma.io/).
+### Database
+Our project relies on the PrismaJS ORM. Be attentive to migrations and configuration commands. For detailed information, visit [PrismaJS](https://www.prisma.io/).
 
-Whenever you create a new table, change a column or make any changes to the database schema, you must run a migration with the following command:
+Whenever you introduce changes to the database schema—such as creating tables or altering columns—run a migration using this command:
 
-``pnpm prisma migrate dev --name name-of-migration``
+```pnpm prisma migrate dev --name name-of-migration```
 
-ATTENTION: if your environment variable is set to point to a production database, the migration will run on that database, so be careful not to run a migration on the production database by accident.
+**Note**: If your environment variable points to a production database, migrations will affect that database. Exercise caution to prevent accidental migrations on the production database.
 
-After running the migration, you must update prismaClient so that it recognizes your new entities. To do this, you can type the command `pnpm prisma generate` or the command `pnpm setup:project`
+After migration, update Prisma Client to recognize your new entities. Execute either `pnpm prisma generate` or `pnpm setup:project` to achieve this.
 
-#### API:
-This codebase has a rest api configured with fastify and also a graphql api. Feel free to use the one that best fits your project.
+### API
+This codebase features a REST API powered by Fastify and a GraphQL API. Feel free to select the one that aligns with your project.
 
-The system modules are created with inversify containers.
-Inversify was chosen for some design pattern reasons such as dependency injections and type resolution.
+Our system modules rely on Inversify containers. Inversify was chosen for its support of design patterns like dependency injection and type resolution.
 
-To create a new module such as user, post, address, or any other, simply create the folder, configure the controller, the interfaces for services, repositories and use cases, and export everything in an `inversify container` with the name of the module. then simply go to the `src/container.ts` file and import the module there.
+To introduce a new module (e.g., user, post, address), follow these steps:
+1. Create a folder for the module.
+2. Configure the controller, service interfaces, repositories, and use cases.
+3. Export everything in an Inversify container with the module's name.
+4. Import the module in the `src/container.ts` file.
 
-#### Test and Lint:
-This codebase has been configured to run test and lint checks with husky whenever a commit is sent, so write tests for all your modules and watch out for eslint warnings by running the `pnpm test` and `pnpm lint` commands.
-
+### Testing and Linting
+Our codebase has Husky configured to trigger tests and linting checks with every commit. Ensure you write tests for all your modules and pay attention to ESLint warnings by running the following commands:
+- `pnpm test`
+- `pnpm lint`
