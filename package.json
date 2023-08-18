@@ -14,6 +14,8 @@
     "test": "tsc && jest test --colors --passWithNoTests",
     "test:debug": "pnpm test --detectOpenHandles --forceExit",
     "test:watch": "tsc && jest test --watch",
+    "prisma:prod": "pnpm prisma generate --schema prisma/schema.dev.prisma",
+    "prisma:dev": "pnpm prisma generate --schema prisma/schema.prod.prisma",
     "organization": "pnpm install && pnpm prepare && pnpx prisma generate",
     "reset": "rimraf node_modules pnpm-lock.yaml && pnpm organization",
     "prepare": "husky install",

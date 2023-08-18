@@ -10,6 +10,7 @@ module.exports = {
     '!test/**',
     '!src/server.ts',
     '!src/routes.ts',
+    '!src/module.ts',
   ],
   coverageThreshold: {
     global: {
