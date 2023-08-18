@@ -26,6 +26,8 @@ Whenever you create a new table, change a column or make any changes to the data
 
 ``pnpm prisma migrate dev --name name-of-migration``
 
-ATTENTION: if your environment variable is set pointing to a production database the migration will be run on it.
+ATTENTION: if your environment variable is set to point to a production database, the migration will run on that database, so be careful not to run a migration on the production database by accident.
 
 After running the migration, you must update prismaClient so that it recognizes your new entities. To do this, you can type the command `pnpm prisma generate` or the command `pnpm setup:project`
+
+
