@@ -14,8 +14,9 @@ Welcome to the Server Codebase! This project streamlines the setup and developme
 Follow these steps to set up the project:
 
 1. Configure environment variables by creating an `.env` file. Refer to the provided `.env.example` in this repository.
-2. Install project dependencies by running the command `pnpm install`.
-3. Execute the `pnpm setup:project` script to automatically perform tasks like removing unused files, configuring PrismaJS, and setting up Husky.
+2. Configure the database driver used in the schema.prisma file.
+3. Install project dependencies by running the command `pnpm install`.
+4. Execute the `pnpm setup:project` script to automatically perform tasks like removing unused files, configuring PrismaJS, and setting up Husky.
 
 ## Development
 
